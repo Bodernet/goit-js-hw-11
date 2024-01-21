@@ -20,9 +20,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-* {
-  box-sizing: border-box;
-}
+
 h1,
 h2,
 h3,
@@ -127,7 +125,7 @@ button:disabled {
   margin-bottom: 40px;
   max-width: 1128px;
 }
-.gallery-list {
+.gallery-item {
   flex-basis: calc((100% - 48 px) / 3);
   list-style-type: none;
   transition: transform 250ms ease-in-out;

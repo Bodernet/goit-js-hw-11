@@ -41,6 +41,7 @@ refs.form.addEventListener(`submit`, e => {
         captionDelay: 250,
       });
       refs.form.reset();
+      simplyGallery.refresh();
     })
     .catch(error => console.error(error));
 });
@@ -59,8 +60,8 @@ function createMarkup(hits) {
   return hits
     .map(
       ({
-        largeImageURL,
         webformatURL,
+        largeImageURL,
         tags,
         likes,
         views,
@@ -68,7 +69,7 @@ function createMarkup(hits) {
         downloads,
       }) =>
         `
-          <li class="gallery-list">
+          <li class="gallery-item">
     <a class="gallery-link" href="${largeImageURL}">
       <img
         class="gallery-img"
