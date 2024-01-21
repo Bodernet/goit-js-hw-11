@@ -65,6 +65,7 @@ img {
   margin: 0 auto;
   margin-bottom: 32px;
 }
+
 input {
   font-family: inherit;
   padding: 8px 16px;
@@ -77,14 +78,17 @@ input {
   outline: none;
   margin-right: 8px;
 }
+
 input:hover {
   border: 1px solid #000;
 }
+
 input:active,
 input:focus {
   color: #000;
   border: 1px solid #4e75ff;
 }
+
 input:disabled {
   color: #808080;
   background: #f5f5f5;
@@ -104,9 +108,11 @@ button {
   outline: none;
   cursor: pointer;
 }
+
 button:hover {
   background: #6c8cff;
 }
+
 button:disabled {
   color: #989898;
   background: #cfcfcf;
@@ -125,6 +131,7 @@ button:disabled {
   margin-bottom: 40px;
   max-width: 1128px;
 }
+
 .gallery-item {
   flex-basis: calc((100% - 48 px) / 3);
   list-style-type: none;
