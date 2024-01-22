@@ -15,6 +15,7 @@ const refs = {
   loader: document.querySelector('.loader'),
   gallery: document.querySelector('.gallery'),
 };
+let simpleGallery;
 
 refs.form.addEventListener(`submit`, e => {
   e.preventDefault();
@@ -23,6 +24,9 @@ refs.form.addEventListener(`submit`, e => {
     createMessage('Please, enter search term!');
     return;
   }
+  showLoader(true);
+  refs.form.reset();
+
   const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`;
 
   fetchApiPhotos(url)
@@ -31,23 +35,27 @@ refs.form.addEventListener(`submit`, e => {
         createMessage(
           `Sorry, there are no images matching your search query. Please, try again!`
         );
-        showLoader(false);
+        const hits = data.hits;
+        refs.gallery.innerHTML = createMarkup(hits);
+        return hits;
       }
-
-      refs.gallery.innerHTML = createMarkup(data.hits);
-      showLoader(false);
-      const simplyGallery = new SimpleLightbox('.gallery-item a', {
+      return data.hits;
+    })
+    .then(photoHits => {
+      simpleGallery = new SimpleLightbox('.gallery-item a', {
         captionsData: 'alt',
         captionDelay: 250,
       });
-      refs.form.reset();
-      simplyGallery.refresh();
+      simpleGallery.refresh();
+      refs.gallery.innerHTML = createMarkup(photoHits);
     })
-    .catch(error => console.error(error));
+    .catch(error => console.error(error))
+    .finally(() => showLoader(false));
 });
 
 function fetchApiPhotos(url) {
-  showLoader(true);
+  const query = refs.input.value.trim();
+
   return fetch(url).then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
