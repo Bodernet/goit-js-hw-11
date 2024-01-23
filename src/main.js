@@ -36,14 +36,7 @@ refs.form.addEventListener(`submit`, e => {
           `Sorry, there are no images matching your search query. Please, try again!`
         );
         return;
-        // const hits = data.hits;
-        // refs.gallery.innerHTML = createMarkup(hits);
-        // return hits;
       }
-      // return data.hits;
-
-      // })
-      // .then(photoHits => {
       simpleGallery = new SimpleLightbox('.gallery-item a', {
         captionsData: 'alt',
         captionDelay: 250,
