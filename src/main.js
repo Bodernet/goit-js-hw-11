@@ -35,27 +35,27 @@ refs.form.addEventListener(`submit`, e => {
         createMessage(
           `Sorry, there are no images matching your search query. Please, try again!`
         );
-        const hits = data.hits;
-        refs.gallery.innerHTML = createMarkup(hits);
-        return hits;
+        return;
+        // const hits = data.hits;
+        // refs.gallery.innerHTML = createMarkup(hits);
+        // return hits;
       }
-      return data.hits;
-    })
-    .then(photoHits => {
+      // return data.hits;
+
+      // })
+      // .then(photoHits => {
       simpleGallery = new SimpleLightbox('.gallery-item a', {
         captionsData: 'alt',
         captionDelay: 250,
       });
       simpleGallery.refresh();
-      refs.gallery.innerHTML = createMarkup(photoHits);
+      refs.gallery.innerHTML = createMarkup(data.hits);
     })
     .catch(error => console.error(error))
     .finally(() => showLoader(false));
 });
 
 function fetchApiPhotos(url) {
-  const query = refs.input.value.trim();
-
   return fetch(url).then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
